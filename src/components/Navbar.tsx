@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, GraduationCap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import saviLogo from '@/assets/savi-logo.png';
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -52,13 +53,7 @@ const Navbar = () => {
             className="flex items-center gap-3 group"
             whileHover={{ scale: 1.02 }}
           >
-            <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center">
-              <GraduationCap className="w-7 h-7 text-primary-foreground" />
-            </div>
-            <div>
-              <span className="text-2xl font-bold text-foreground">SAVI</span>
-              <span className="text-2xl font-bold text-primary"> Academy</span>
-            </div>
+            <img src={saviLogo} alt="SAVI Academy" className="h-12 w-auto" />
           </motion.a>
 
           {/* Desktop Navigation */}

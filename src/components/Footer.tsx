@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Facebook, Instagram, Linkedin, Twitter, GraduationCap, Heart } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Twitter, Heart } from 'lucide-react';
+import saviLogo from '@/assets/savi-logo.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -50,15 +51,9 @@ const Footer = () => {
                 e.preventDefault();
                 scrollToSection('#home');
               }}
-              className="flex items-center gap-3 mb-6"
+              className="block mb-6"
             >
-              <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center">
-                <GraduationCap className="w-7 h-7 text-primary-foreground" />
-              </div>
-              <div>
-                <span className="text-xl font-bold text-foreground">SAVI</span>
-                <span className="text-xl font-bold text-primary"> Academy</span>
-              </div>
+              <img src={saviLogo} alt="SAVI Academy" className="h-12 w-auto" />
             </a>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
               Your trusted partner in achieving CA excellence. Premier coaching for CA Foundation & Intermediate in Thanjavur.
