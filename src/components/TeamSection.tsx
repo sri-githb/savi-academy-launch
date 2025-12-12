@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Linkedin, Mail, Award } from 'lucide-react';
@@ -5,6 +6,18 @@ import { Linkedin, Mail, Award } from 'lucide-react';
 const TeamSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    };
+    checkTheme();
+    
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
 
   const team = [
     {
@@ -44,9 +57,9 @@ const TeamSection = () => {
   return (
     <section id="team" className="py-24 relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/10 to-background" />
+      <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-b from-background via-secondary/10 to-background' : 'bg-gradient-to-b from-background via-primary/5 to-background'}`} />
       <motion.div
-        className="absolute bottom-1/4 left-0 w-80 h-80 rounded-full bg-primary/5 blur-3xl"
+        className={`absolute bottom-1/4 left-0 w-80 h-80 rounded-full blur-3xl ${isDark ? 'bg-primary/5' : 'bg-primary/3'}`}
         animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
         transition={{ duration: 6, repeat: Infinity }}
       />
@@ -82,9 +95,9 @@ const TeamSection = () => {
               whileHover={{ y: -8 }}
             >
               {/* Avatar Placeholder */}
-              <div className="relative h-48 bg-gradient-to-br from-secondary to-navy-light overflow-hidden">
+              <div className={`relative h-48 overflow-hidden ${isDark ? 'bg-gradient-to-br from-secondary to-navy-light' : 'bg-gradient-to-br from-primary/10 to-primary/20'}`}>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-24 h-24 rounded-full bg-primary/20 flex items-center justify-center text-4xl font-bold text-primary">
+                  <div className={`w-24 h-24 rounded-full flex items-center justify-center text-4xl font-bold ${isDark ? 'bg-primary/20 text-primary' : 'bg-primary/30 text-primary'}`}>
                     {member.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
                   </div>
                 </div>
@@ -117,7 +130,7 @@ const TeamSection = () => {
                 <div className="flex items-center gap-3 mt-4 pt-4 border-t border-border/30">
                   <motion.a
                     href="#"
-                    className="w-8 h-8 rounded-lg bg-secondary/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${isDark ? 'bg-secondary/50 text-muted-foreground hover:text-primary hover:bg-primary/10' : 'bg-primary/10 text-primary/70 hover:text-primary hover:bg-primary/20'}`}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                   >
@@ -125,7 +138,7 @@ const TeamSection = () => {
                   </motion.a>
                   <motion.a
                     href="#"
-                    className="w-8 h-8 rounded-lg bg-secondary/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${isDark ? 'bg-secondary/50 text-muted-foreground hover:text-primary hover:bg-primary/10' : 'bg-primary/10 text-primary/70 hover:text-primary hover:bg-primary/20'}`}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                   >
