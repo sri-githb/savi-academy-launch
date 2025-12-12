@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import saviLogo from '@/assets/savi-logo.png';
+import ThemeToggle from './ThemeToggle';
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -72,6 +73,7 @@ const Navbar = () => {
                 {item.label}
               </motion.a>
             ))}
+            <ThemeToggle />
             <motion.button
               onClick={() => scrollToSection('#contact')}
               className="ml-4 btn-primary text-sm"
@@ -115,12 +117,15 @@ const Navbar = () => {
                   {item.label}
                 </a>
               ))}
-              <button
-                onClick={() => scrollToSection('#contact')}
-                className="mt-2 btn-primary text-center"
-              >
-                Enroll Now
-              </button>
+              <div className="flex items-center justify-between mt-4">
+                <ThemeToggle />
+                <button
+                  onClick={() => scrollToSection('#contact')}
+                  className="btn-primary text-center"
+                >
+                  Enroll Now
+                </button>
+              </div>
             </div>
           </motion.div>
         )}
