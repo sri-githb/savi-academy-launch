@@ -7,11 +7,13 @@ const ThemeToggle = () => {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('savi-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
     if (savedTheme === 'light') {
       setIsDark(false);
       document.documentElement.classList.remove('dark');
       document.documentElement.classList.add('light');
-    } else {
+    } else if (savedTheme === 'dark' || prefersDark) {
       setIsDark(true);
       document.documentElement.classList.add('dark');
       document.documentElement.classList.remove('light');
@@ -40,7 +42,7 @@ const ThemeToggle = () => {
       style={{
         background: isDark 
           ? 'linear-gradient(135deg, hsl(220 50% 12%), hsl(220 40% 18%))' 
-          : 'linear-gradient(135deg, hsl(200 90% 75%), hsl(200 100% 85%))'
+          : 'linear-gradient(135deg, hsl(220 70% 30%), hsl(220 80% 20%))'
       }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
@@ -55,21 +57,21 @@ const ThemeToggle = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               transition={{ delay: 0.1 }}
-              className="absolute top-1.5 right-2 w-1 h-1 bg-white rounded-full"
+              className="absolute top-1.5 right-2 w-1 h-1 bg-primary rounded-full"
             />
             <motion.span
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               transition={{ delay: 0.2 }}
-              className="absolute top-3 right-4 w-0.5 h-0.5 bg-white/80 rounded-full"
+              className="absolute top-3 right-4 w-0.5 h-0.5 bg-primary/80 rounded-full"
             />
             <motion.span
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               transition={{ delay: 0.15 }}
-              className="absolute bottom-2 right-3 w-0.5 h-0.5 bg-white/60 rounded-full"
+              className="absolute bottom-2 right-3 w-0.5 h-0.5 bg-primary/60 rounded-full"
             />
           </>
         )}
@@ -84,14 +86,14 @@ const ThemeToggle = () => {
               animate={{ opacity: 0.6, x: 0 }}
               exit={{ opacity: 0, x: 10 }}
               transition={{ delay: 0.1 }}
-              className="absolute top-1 right-1 w-3 h-1.5 bg-white rounded-full"
+              className="absolute top-1 right-1 w-3 h-1.5 bg-white/50 rounded-full"
             />
             <motion.span
               initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: 0.4, x: 0 }}
               exit={{ opacity: 0, x: 10 }}
               transition={{ delay: 0.2 }}
-              className="absolute bottom-1.5 right-2 w-2 h-1 bg-white rounded-full"
+              className="absolute bottom-1.5 right-2 w-2 h-1 bg-white/40 rounded-full"
             />
           </>
         )}
@@ -104,7 +106,7 @@ const ThemeToggle = () => {
         style={{
           background: isDark 
             ? 'linear-gradient(135deg, hsl(45 100% 50%), hsl(40 100% 40%))' 
-            : 'linear-gradient(135deg, hsl(45 100% 60%), hsl(40 100% 45%))'
+            : 'linear-gradient(135deg, hsl(0 0% 100%), hsl(210 40% 96%))'
         }}
         animate={{
           x: isDark ? 0 : 22,
@@ -135,7 +137,7 @@ const ThemeToggle = () => {
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <Sun className="w-3.5 h-3.5 text-navy" />
+              <Sun className="w-3.5 h-3.5 text-primary" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -151,7 +153,7 @@ const ThemeToggle = () => {
                   animate={{ scale: 1, opacity: 0.6 }}
                   exit={{ scale: 0, opacity: 0 }}
                   transition={{ delay: 0.1 + i * 0.03 }}
-                  className="absolute w-0.5 h-1 bg-gold-dark rounded-full"
+                  className="absolute w-0.5 h-1 bg-primary rounded-full"
                   style={{
                     transform: `rotate(${i * 45}deg) translateY(-10px)`,
                     transformOrigin: 'center center',

@@ -1,8 +1,22 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play, Star, Users, Award } from 'lucide-react';
 import heroBg from '@/assets/hero-bg.jpg';
 
 const HeroSection = () => {
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    };
+    checkTheme();
+    
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -21,7 +35,7 @@ const HeroSection = () => {
       {/* Background */}
       <div className="absolute inset-0 bg-hero-pattern" />
       <div 
-        className="absolute inset-0 opacity-20"
+        className={`absolute inset-0 ${isDark ? 'opacity-20' : 'opacity-10'}`}
         style={{
           backgroundImage: `url(${heroBg})`,
           backgroundSize: 'cover',
@@ -35,7 +49,7 @@ const HeroSection = () => {
       
       {/* Animated Glow Effects */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/10 blur-3xl"
+        className={`absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl ${isDark ? 'bg-primary/10' : 'bg-primary/5'}`}
         animate={{ 
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -43,7 +57,7 @@ const HeroSection = () => {
         transition={{ duration: 4, repeat: Infinity }}
       />
       <motion.div
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-secondary/20 blur-3xl"
+        className={`absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl ${isDark ? 'bg-secondary/20' : 'bg-primary/10'}`}
         animate={{ 
           scale: [1.2, 1, 1.2],
           opacity: [0.2, 0.4, 0.2],
