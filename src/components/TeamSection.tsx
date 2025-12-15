@@ -103,11 +103,11 @@ const TeamSection = () => {
               whileHover={{ y: -8 }}
             >
               {/* Member Photo */}
-              <div className={`relative h-56 overflow-hidden ${isDark ? 'bg-gradient-to-br from-secondary to-navy-light' : 'bg-gradient-to-br from-primary/10 to-primary/20'}`}>
+              <div className={`relative overflow-hidden ${isDark ? 'bg-gradient-to-br from-secondary to-navy-light' : 'bg-gradient-to-br from-primary/10 to-primary/20'}`}>
                 <img 
                   src={member.image} 
                   alt={member.name}
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-auto object-contain"
                 />
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-t from-background to-transparent"
