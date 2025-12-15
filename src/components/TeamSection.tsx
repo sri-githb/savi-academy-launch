@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Linkedin, Mail, Award } from 'lucide-react';
+import caGokul from '@/assets/CA_GOKUL.png';
+import caBhuvan from '@/assets/CA_BHUVAN.png';
+import caVishal from '@/assets/CA_VISHAL.png';
+import caDhana from '@/assets/CA_DHANA.png';
 
 const TeamSection = () => {
   const ref = useRef(null);
@@ -21,36 +25,40 @@ const TeamSection = () => {
 
   const team = [
     {
-      name: 'CA Saravanan K',
-      qualification: 'CA, FCA',
-      role: 'Founder & Principal',
+      name: 'CA GOKULNATH R',
+      image: caGokul,
+      qualification: 'CA',
+      role: 'Faculty',
       expertise: 'Financial Accounting, Taxation',
-      experience: '15+ years of teaching & industry experience',
-      description: 'Expert in advanced accounting concepts with a passion for nurturing future CAs. Known for simplified teaching methodology.',
+      experience: 'Expert CA Professional',
+      description: 'Dedicated to nurturing future CAs with simplified teaching methodology and practical insights.',
     },
     {
-      name: 'CA Vijayalakshmi R',
-      qualification: 'CA, M.Com',
-      role: 'Senior Faculty - Law',
+      name: 'CA BHUVAN KUMAR K',
+      image: caBhuvan,
+      qualification: 'CA',
+      role: 'Faculty',
       expertise: 'Corporate Laws, Business Laws',
-      experience: '12+ years in CA education',
-      description: 'Specialist in legal frameworks with comprehensive knowledge of corporate and business laws. Makes complex topics easy to understand.',
+      experience: 'Expert CA Professional',
+      description: 'Specialist in legal frameworks with comprehensive knowledge of corporate and business laws.',
     },
     {
-      name: 'CA Murugesh S',
-      qualification: 'CA, CMA',
-      role: 'Senior Faculty - Costing',
+      name: 'CA VISHAL V S',
+      image: caVishal,
+      qualification: 'CA',
+      role: 'Faculty',
       expertise: 'Cost Accounting, Management Accounting',
-      experience: '10+ years in professional education',
-      description: 'Dual-qualified professional with expertise in cost management and strategic decision-making frameworks.',
+      experience: 'Expert CA Professional',
+      description: 'Expert in cost management and strategic decision-making frameworks.',
     },
     {
-      name: 'CA Priya M',
-      qualification: 'CA, B.Com',
-      role: 'Faculty - Audit & Taxation',
+      name: 'CA DHANASEKARAN V',
+      image: caDhana,
+      qualification: 'CA',
+      role: 'Faculty',
       expertise: 'Auditing, Direct & Indirect Tax',
-      experience: '8+ years teaching experience',
-      description: 'Combines practical audit experience with teaching excellence. Known for exam-focused preparation strategies.',
+      experience: 'Expert CA Professional',
+      description: 'Combines practical audit experience with teaching excellence and exam-focused strategies.',
     },
   ];
 
@@ -94,16 +102,16 @@ const TeamSection = () => {
               className="glass-card overflow-hidden group hover:border-primary/30 transition-all duration-300"
               whileHover={{ y: -8 }}
             >
-              {/* Avatar Placeholder */}
-              <div className={`relative h-48 overflow-hidden ${isDark ? 'bg-gradient-to-br from-secondary to-navy-light' : 'bg-gradient-to-br from-primary/10 to-primary/20'}`}>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className={`w-24 h-24 rounded-full flex items-center justify-center text-4xl font-bold ${isDark ? 'bg-primary/20 text-primary' : 'bg-primary/30 text-primary'}`}>
-                    {member.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                  </div>
-                </div>
+              {/* Member Photo */}
+              <div className={`relative h-56 overflow-hidden ${isDark ? 'bg-gradient-to-br from-secondary to-navy-light' : 'bg-gradient-to-br from-primary/10 to-primary/20'}`}>
+                <img 
+                  src={member.image} 
+                  alt={member.name}
+                  className="w-full h-full object-cover object-top"
+                />
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-t from-background to-transparent"
-                  initial={{ opacity: 0 }}
+                  initial={{ opacity: 0.3 }}
                   whileHover={{ opacity: 0.5 }}
                 />
               </div>
