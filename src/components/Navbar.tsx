@@ -50,11 +50,11 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 rounded-none ${
         isScrolled 
           ? isDark 
-            ? 'glass-card !rounded-none border-x-0 border-t-0' 
-            : 'bg-navy shadow-lg !rounded-none'
+            ? 'bg-background/80 backdrop-blur-xl border-b border-border/50' 
+            : 'bg-navy shadow-lg'
           : isDark 
             ? 'bg-transparent' 
             : 'bg-navy/95'
@@ -127,29 +127,27 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className={`lg:hidden ${isDark ? 'glass-card !rounded-t-none border-x-0' : 'bg-navy'}`}
+            className={`lg:hidden rounded-none ${isDark ? 'bg-background/95 backdrop-blur-xl border-b border-border/50' : 'bg-navy'}`}
           >
             <div className="section-container py-4 flex flex-col gap-2">
               {navItems.map((item) => (
-                <a
+                <button
                   key={item.href}
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(item.href);
-                  }}
-                  className={`px-4 py-3 rounded-lg transition-colors ${
+                  type="button"
+                  onClick={() => scrollToSection(item.href)}
+                  className={`px-4 py-3 rounded-lg transition-colors text-left ${
                     isDark 
                       ? 'text-muted-foreground hover:text-foreground hover:bg-secondary/30' 
                       : 'text-white/80 hover:text-white hover:bg-white/10'
                   }`}
                 >
                   {item.label}
-                </a>
+                </button>
               ))}
               <div className="flex items-center justify-between mt-4">
                 <ThemeToggle />
                 <button
+                  type="button"
                   onClick={() => scrollToSection('#contact')}
                   className={`text-center rounded-xl px-6 py-3 font-semibold ${
                     isDark 
