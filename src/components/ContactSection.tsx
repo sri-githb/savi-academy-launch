@@ -29,7 +29,7 @@ ${formData.message}`;
 
     const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
-    window.open(mailtoLink, '_blank');
+    window.location.href = mailtoLink;
     
     toast({
       title: "Mail sent successfully!",
