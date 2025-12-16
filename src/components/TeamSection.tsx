@@ -11,6 +11,7 @@ const TeamSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isDark, setIsDark] = useState(true);
+  const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
 
   useEffect(() => {
     const checkTheme = () => {
@@ -23,6 +24,21 @@ const TeamSection = () => {
     return () => observer.disconnect();
   }, []);
 
+  const handleEmailClick = (email: string, name: string) => {
+    const mailtoLink = `mailto:${email}?subject=Inquiry from SAVI Academy Website&body=Hi ${name},%0D%0A%0D%0AI came across your profile on the SAVI Academy website and would like to connect with you regarding...`;
+    
+    // Try to open mail client
+    window.location.href = mailtoLink;
+    
+    // Fallback: copy email to clipboard and show notification
+    setTimeout(() => {
+      navigator.clipboard.writeText(email).then(() => {
+        setCopiedEmail(email);
+        setTimeout(() => setCopiedEmail(null), 3000);
+      });
+    }, 1000);
+  };
+
   const team = [
     {
       name: 'CA GOKULNATH R',
@@ -32,24 +48,30 @@ const TeamSection = () => {
       expertise: 'Financial Accounting, Taxation',
       experience: 'Expert CA Professional',
       description: 'Dedicated to nurturing future CAs with simplified teaching methodology and practical insights.',
-    },
-    {
-      name: 'CA BHUVAN KUMAR K',
-      image: caBhuvan,
-      qualification: 'CA',
-      role: 'Faculty',
-      expertise: 'Corporate Laws, Business Laws',
-      experience: 'Expert CA Professional',
-      description: 'Specialist in legal frameworks with comprehensive knowledge of corporate and business laws.',
+      email: 'ca.gokulnath@saviacademy.com',
+      linkedin: '#',
     },
     {
       name: 'CA VISHAL V S',
       image: caVishal,
       qualification: 'CA',
       role: 'Faculty',
+      expertise: 'Corporate Laws, Business Laws',
+      experience: 'Expert CA Professional',
+      description: 'Specialist in legal frameworks with comprehensive knowledge of corporate and business laws.',
+      email: 'ca.vishal@saviacademy.com',
+      linkedin: '#',
+    },
+    {
+      name: 'CA BHUVAN KUMAR K',
+      image: caBhuvan,
+      qualification: 'CA',
+      role: 'Faculty',
       expertise: 'Cost Accounting, Management Accounting',
       experience: 'Expert CA Professional',
       description: 'Expert in cost management and strategic decision-making frameworks.',
+      email: 'ca.bhuvan@saviacademy.com',
+      linkedin: '#',
     },
     {
       name: 'CA DHANASEKARAN V',
@@ -59,6 +81,8 @@ const TeamSection = () => {
       expertise: 'Auditing, Direct & Indirect Tax',
       experience: 'Expert CA Professional',
       description: 'Combines practical audit experience with teaching excellence and exam-focused strategies.',
+      email: 'ca.dhanasekaran@saviacademy.com',
+      linkedin: '#',
     },
   ];
 
@@ -137,20 +161,37 @@ const TeamSection = () => {
                 {/* Social Links */}
                 <div className="flex items-center gap-3 mt-4 pt-4 border-t border-border/30">
                   <motion.a
-                    href="#"
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${isDark ? 'bg-secondary/50 text-muted-foreground hover:text-primary hover:bg-primary/10' : 'bg-primary/10 text-primary/70 hover:text-primary hover:bg-primary/20'}`}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
+                    aria-label={`${member.name} LinkedIn profile`}
                   >
                     <Linkedin className="w-4 h-4" />
                   </motion.a>
                   <motion.a
-                    href="#"
-                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${isDark ? 'bg-secondary/50 text-muted-foreground hover:text-primary hover:bg-primary/10' : 'bg-primary/10 text-primary/70 hover:text-primary hover:bg-primary/20'}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleEmailClick(member.email, member.name);
+                    }}
+                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${isDark ? 'bg-secondary/50 text-muted-foreground hover:text-primary hover:bg-primary/10' : 'bg-primary/10 text-primary/70 hover:text-primary hover:bg-primary/20'} relative`}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
+                    aria-label={`Email ${member.name}`}
                   >
                     <Mail className="w-4 h-4" />
+                    {copiedEmail === member.email && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.8, y: 10 }}
+                        className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-primary text-white text-xs px-2 py-1 rounded whitespace-nowrap z-50"
+                      >
+                        Email copied!
+                      </motion.div>
+                    )}
                   </motion.a>
                 </div>
               </div>

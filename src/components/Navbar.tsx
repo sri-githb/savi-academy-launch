@@ -119,13 +119,16 @@ const Navbar = () => {
             </motion.button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden p-2 ${isDark ? 'text-foreground' : 'text-white'}`}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Menu Button & Theme Toggle */}
+          <div className="lg:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={`p-2 ${isDark ? 'text-foreground' : 'text-white'}`}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -153,20 +156,17 @@ const Navbar = () => {
                   {item.label}
                 </button>
               ))}
-              <div className="flex items-center justify-between mt-4">
-                <ThemeToggle />
-                <button
-                  type="button"
-                  onClick={() => scrollToSection('#contact')}
-                  className={`text-center rounded-xl px-6 py-3 font-semibold ${
-                    isDark 
-                      ? 'btn-primary' 
-                      : 'bg-white text-navy hover:bg-white/90'
-                  }`}
-                >
-                  Enroll Now
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={() => scrollToSection('#contact')}
+                className={`w-full text-center rounded-xl px-6 py-3 font-semibold ${
+                  isDark 
+                    ? 'btn-primary' 
+                    : 'bg-white text-navy hover:bg-white/90'
+                }`}
+              >
+                Enroll Now
+              </button>
             </div>
           </motion.div>
         )}
