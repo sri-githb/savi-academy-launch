@@ -14,16 +14,26 @@ const ContactSection = () => {
     message: '',
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const recipientEmail = 'sudarsansuresh24@gmail.com';
+    const subject = `New Inquiry from ${formData.name} - SAVI Academy`;
+    const body = `Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+
+Message:
+${formData.message}`;
+
+    const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    window.open(mailtoLink, '_blank');
     
     toast({
-      title: "Message Sent!",
-      description: "Thank you for contacting SAVI Academy. We'll get back to you soon!",
+      title: "Mail sent successfully!",
+      description: "We will reach you soon.",
     });
     
     setFormData({ name: '', email: '', phone: '', message: '' });
