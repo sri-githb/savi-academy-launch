@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
   :root {
     /* Dark Blue & Yellow Theme for SAVI Academy */
@@ -205,7 +206,8 @@
   }
 
   body {
-    @apply bg-background text-foreground font-poppins antialiased transition-colors duration-500;
+    @apply bg-background text-foreground antialiased transition-colors duration-500;
+    font-family: 'Merriweather', serif;
   }
 
   /* Smooth theme transition for all elements */
