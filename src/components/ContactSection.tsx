@@ -32,8 +32,8 @@ ${formData.message}`;
     window.location.href = mailtoLink;
     
     toast({
-      title: "Mail sent successfully!",
-      description: "We will reach you soon.",
+      title: "Email app opened!",
+      description: "Please send the email from your mail app.",
     });
     
     setFormData({ name: '', email: '', phone: '', message: '' });
