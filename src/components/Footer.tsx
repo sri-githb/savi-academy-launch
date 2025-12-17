@@ -123,7 +123,14 @@ const Footer = () => {
           <div>
             <h4 className={`text-lg font-semibold mb-6 ${isDark ? 'text-foreground' : 'text-white'}`}>Our Courses</h4>
             <ul className="space-y-3">
-              {courses.map(course => {})}
+              {courses.map(course => <li key={course.label}>
+                  <a href={course.href} onClick={e => {
+                e.preventDefault();
+                scrollToSection(course.href);
+              }} className={`text-sm animated-underline inline-block transition-colors ${isDark ? 'text-muted-foreground hover:text-primary' : 'text-white/70 hover:text-white'}`}>
+                    {course.label}
+                  </a>
+                </li>)}
             </ul>
           </div>
 
@@ -133,7 +140,7 @@ const Footer = () => {
             <div className={`space-y-3 text-sm ${isDark ? 'text-muted-foreground' : 'text-white/70'}`}>
               <p>Diamond Residency, 3rd Floor, Muthu Nagar</p>
               <p>Tamil Nadu - 613001</p>
-              <p className={isDark ? 'text-primary' : 'text-white font-medium'}>+91 9585932697</p>
+              <p className={isDark ? 'text-primary' : 'text-white font-medium'}>+91 98765 43210</p>
               <p className={isDark ? 'text-primary' : 'text-white font-medium'}>info@saviacademy.com</p>
             </div>
           </div>
