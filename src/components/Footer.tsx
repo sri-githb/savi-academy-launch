@@ -45,9 +45,6 @@ const Footer = () => {
   }, {
     label: 'CA Intermediate',
     href: '#courses'
-  }, {
-    label: '11th & 12th Commerce',
-    href: '#courses'
   }];
   const socialLinks = [{
     icon: Facebook,
