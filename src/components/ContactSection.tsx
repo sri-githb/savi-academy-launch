@@ -19,23 +19,14 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     const recipientEmail = 'sudarsansuresh24@gmail.com';
-    const subject = `New Inquiry from ${formData.name} - SAVI Academy`;
-    const body = `Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
+    const subject = `inquiry from ${formData.name}`;
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`;
 
-Message:
-${formData.message}`;
-
-    const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // Use Gmail's web compose URL - works reliably on both desktop and mobile
+    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipientEmail)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
-    // Create a temporary anchor element and click it to open email client
-    const link = document.createElement('a');
-    link.href = mailtoLink;
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Open Gmail compose in new tab
+    window.open(gmailComposeUrl, '_blank');
     
     toast({
       title: "Email app opened!",
