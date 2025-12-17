@@ -136,7 +136,7 @@ const Footer = () => {
             <h4 className={`text-lg font-semibold mb-6 ${isDark ? 'text-foreground' : 'text-white'}`}>Contact Info</h4>
             <div className={`space-y-3 text-sm ${isDark ? 'text-muted-foreground' : 'text-white/70'}`}>
               <p>Diamond Residency, 3rd Floor, Muthu Nagar</p>
-              <p>Tamil Nadu - 613001</p>
+              <p>Tamil Nadu - 613005</p>
               <p className={isDark ? 'text-primary' : 'text-white font-medium'}>+91 98765 43210</p>
               <p className={isDark ? 'text-primary' : 'text-white font-medium'}>saviacademy1@gmail.com</p>
             </div>
