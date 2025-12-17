@@ -50,17 +50,17 @@ ${formData.message}`;
     {
       icon: MapPin,
       title: 'Visit Us',
-      details: ['SAVI Academy', '123 Main Road, Thanjavur', 'Tamil Nadu - 613001'],
+      details: ['Diamond Residency', 'No. 24, 3rd Floor, Muthu Nagar, Opp. M TEENZ Thanjavur', 'Tamil Nadu - 613005'],
     },
     {
       icon: Phone,
       title: 'Call Us',
-      details: ['+91 98765 43210', '+91 04362 123456'],
+      details: ['+91 9790901921', '+91 9585932697', '+91 6382893268'],
     },
     {
       icon: Mail,
       title: 'Email Us',
-      details: ['info@saviacademy.com', 'admissions@saviacademy.com'],
+      details: ['saviacademy1@gmail.com'],
     },
     {
       icon: Clock,
