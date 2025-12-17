@@ -138,7 +138,7 @@ const Footer = () => {
               <p>Diamond Residency, 3rd Floor, Muthu Nagar</p>
               <p>Tamil Nadu - 613001</p>
               <p className={isDark ? 'text-primary' : 'text-white font-medium'}>+91 98765 43210</p>
-              <p className={isDark ? 'text-primary' : 'text-white font-medium'}>info@saviacademy.com</p>
+              <p className={isDark ? 'text-primary' : 'text-white font-medium'}>saviacademy1@gmail.com</p>
             </div>
           </div>
         </div>
