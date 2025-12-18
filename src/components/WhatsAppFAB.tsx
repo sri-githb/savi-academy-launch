@@ -97,78 +97,85 @@ I visited your website and want information about CA courses at SAVI Academy.`;
 
             {/* Modal */}
             <motion.div
-              className="fixed left-1/2 top-1/2 z-50 w-[90%] max-w-md -translate-x-1/2 -translate-y-1/2 px-4 sm:px-0"
+              className="fixed left-1/2 top-1/2 z-50 w-[92%] max-w-[400px] -translate-x-1/2 -translate-y-1/2"
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             >
-              <div className="relative rounded-2xl border border-white/20 bg-white/80 dark:bg-navy-900/80 p-5 sm:p-6 pb-6 sm:pb-8 shadow-2xl backdrop-blur-xl">
+              <div className="relative overflow-hidden rounded-3xl border border-white/30 bg-gradient-to-br from-white/20 to-white/5 p-6 sm:p-8 shadow-2xl backdrop-blur-2xl dark:from-navy-900/60 dark:to-navy-950/80 dark:border-white/10">
+                {/* Decorative gradient orbs */}
+                <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#25D366]/20 rounded-full blur-3xl" />
+                <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gold-400/20 rounded-full blur-3xl" />
+                
                 {/* Close Button */}
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="absolute right-4 top-4 rounded-full p-1 text-foreground/60 hover:bg-white/10 hover:text-foreground transition-colors"
+                  className="absolute right-4 top-4 rounded-full p-2 bg-white/10 hover:bg-white/20 text-foreground/70 hover:text-foreground transition-all duration-200"
                 >
-                  <X className="h-5 w-5" />
+                  <X className="h-4 w-4" />
                 </button>
 
                 {/* Header */}
-                <div className="mb-6 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#25D366]">
-                    <MessageCircle className="h-5 w-5 text-white" />
+                <div className="mb-8 flex items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#25D366] shadow-lg shadow-[#25D366]/30">
+                    <MessageCircle className="h-6 w-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground">Chat with us</h3>
+                  <div>
+                    <h3 className="text-xl font-bold text-foreground">Chat with us</h3>
+                    <p className="text-sm text-foreground/60">We typically reply instantly</p>
+                  </div>
                 </div>
 
                 {/* Form */}
-                <div className="space-y-5">
+                <div className="space-y-6">
                   {/* Step 1: Name */}
                   <div className="space-y-2">
-                    <Label className="text-foreground/90">Hi! May I know your name please?</Label>
+                    <Label className="text-sm font-medium text-foreground/90">Hi! May I know your name please?</Label>
                     <Input
                       type="text"
                       placeholder="Enter your name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="border-white/20 bg-white/10 text-foreground placeholder:text-foreground/50 focus:border-gold-400"
+                      className="h-12 rounded-xl border-white/20 bg-white/50 dark:bg-white/10 text-foreground placeholder:text-foreground/40 focus:border-[#25D366] focus:ring-[#25D366]/20 transition-all"
                     />
                   </div>
 
                   {/* Step 2: Education Level */}
                   <div className="space-y-2">
-                    <Label className="text-foreground/90">Are you a</Label>
+                    <Label className="text-sm font-medium text-foreground/90">Are you a</Label>
                     <Select
                       value={formData.educationLevel}
                       onValueChange={(value) => setFormData({ ...formData, educationLevel: value })}
                     >
-                      <SelectTrigger className="border-white/20 bg-white/10 text-foreground focus:border-gold-400">
+                      <SelectTrigger className="h-12 rounded-xl border-white/20 bg-white/50 dark:bg-white/10 text-foreground focus:border-[#25D366] focus:ring-[#25D366]/20">
                         <SelectValue placeholder="Select education level" />
                       </SelectTrigger>
-                      <SelectContent className="z-[100] border-white/20 bg-white dark:bg-navy-800 backdrop-blur-xl">
-                        <SelectItem value="11th" className="text-navy-900 dark:text-white">11th</SelectItem>
-                        <SelectItem value="12th" className="text-navy-900 dark:text-white">12th</SelectItem>
-                        <SelectItem value="Bachelors" className="text-navy-900 dark:text-white">Bachelors</SelectItem>
-                        <SelectItem value="Masters Degree" className="text-navy-900 dark:text-white">Masters Degree</SelectItem>
+                      <SelectContent className="z-[100] rounded-xl border-white/20 bg-white dark:bg-navy-800 shadow-xl">
+                        <SelectItem value="11th" className="text-navy-900 dark:text-white rounded-lg">11th</SelectItem>
+                        <SelectItem value="12th" className="text-navy-900 dark:text-white rounded-lg">12th</SelectItem>
+                        <SelectItem value="Bachelors" className="text-navy-900 dark:text-white rounded-lg">Bachelors</SelectItem>
+                        <SelectItem value="Masters Degree" className="text-navy-900 dark:text-white rounded-lg">Masters Degree</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   {/* Step 3: Status */}
                   <div className="space-y-3">
-                    <Label className="text-foreground/90">Status</Label>
+                    <Label className="text-sm font-medium text-foreground/90">Status</Label>
                     <RadioGroup
                       value={formData.status}
                       onValueChange={(value) => setFormData({ ...formData, status: value })}
-                      className="flex gap-6"
+                      className="flex gap-4"
                     >
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="Completed" id="completed" className="border-white/40 text-gold-400" />
-                        <Label htmlFor="completed" className="text-foreground/80 cursor-pointer">Completed</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="Pursuing" id="pursuing" className="border-white/40 text-gold-400" />
-                        <Label htmlFor="pursuing" className="text-foreground/80 cursor-pointer">Pursuing</Label>
-                      </div>
+                      <label className={`flex-1 flex items-center justify-center gap-2 p-3 rounded-xl border cursor-pointer transition-all ${formData.status === 'Completed' ? 'bg-[#25D366]/20 border-[#25D366] text-foreground' : 'bg-white/30 dark:bg-white/5 border-white/20 text-foreground/70 hover:bg-white/40 dark:hover:bg-white/10'}`}>
+                        <RadioGroupItem value="Completed" id="completed" className="sr-only" />
+                        <span className="text-sm font-medium">Completed</span>
+                      </label>
+                      <label className={`flex-1 flex items-center justify-center gap-2 p-3 rounded-xl border cursor-pointer transition-all ${formData.status === 'Pursuing' ? 'bg-[#25D366]/20 border-[#25D366] text-foreground' : 'bg-white/30 dark:bg-white/5 border-white/20 text-foreground/70 hover:bg-white/40 dark:hover:bg-white/10'}`}>
+                        <RadioGroupItem value="Pursuing" id="pursuing" className="sr-only" />
+                        <span className="text-sm font-medium">Pursuing</span>
+                      </label>
                     </RadioGroup>
                   </div>
 
@@ -176,10 +183,10 @@ I visited your website and want information about CA courses at SAVI Academy.`;
                   <Button
                     onClick={handleSubmit}
                     disabled={!isFormValid}
-                    className="w-full bg-[#25D366] hover:bg-[#20BD5A] text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full h-12 rounded-xl bg-[#25D366] hover:bg-[#20BD5A] text-white font-semibold shadow-lg shadow-[#25D366]/30 disabled:opacity-40 disabled:shadow-none disabled:cursor-not-allowed transition-all duration-200"
                   >
-                    <MessageCircle className="mr-2 h-4 w-4" />
-                    Chat Us
+                    <MessageCircle className="mr-2 h-5 w-5" />
+                    Chat with us on WhatsApp
                   </Button>
                 </div>
               </div>
