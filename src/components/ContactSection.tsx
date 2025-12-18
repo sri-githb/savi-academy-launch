@@ -19,14 +19,16 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     const recipientEmail = 'saviacademy1@gmail.com';
-    const subject = `inquiry from ${formData.name}`;
+    const subject = `Inquiry from ${formData.name}`;
     const body = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`;
 
-    // Use Gmail's web compose URL - works reliably on both desktop and mobile
-    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipientEmail)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // Use mailto: protocol to open native mail app on mobile and default email client on desktop
+    const mailtoUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
-    // Open Gmail compose in new tab
-    window.open(gmailComposeUrl, '_blank');
+    // Create a temporary link element to trigger the mailto: URL
+    const link = document.createElement('a');
+    link.href = mailtoUrl;
+    link.click();
     
     toast({
       title: "Email app opened!",
