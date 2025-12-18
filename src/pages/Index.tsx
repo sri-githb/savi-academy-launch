@@ -8,6 +8,7 @@ import PricingSection from '@/components/PricingSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import WhatsAppFAB from '@/components/WhatsAppFAB';
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
       <PricingSection />
       <ContactSection />
       <Footer />
+      <WhatsAppFAB />
     </main>
   );
 };
