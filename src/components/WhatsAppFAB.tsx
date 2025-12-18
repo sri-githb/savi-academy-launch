@@ -88,7 +88,7 @@ I visited your website and want information about CA courses at SAVI Academy.`;
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm"
+              className="fixed inset-0 z-50 bg-black/40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -97,11 +97,28 @@ I visited your website and want information about CA courses at SAVI Academy.`;
 
             {/* Modal */}
             <motion.div
-              className="fixed left-1/2 top-1/2 z-50 w-[92%] max-w-[400px] -translate-x-1/2 -translate-y-1/2"
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="fixed left-1/2 top-1/2 z-50 w-[92%] max-w-[400px]"
+              initial={{ 
+                opacity: 0, 
+                scale: 0,
+                transform: "translate(-50%, -50%) scale(0)"
+              }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1,
+                transform: "translate(-50%, -50%) scale(1)"
+              }}
+              exit={{ 
+                opacity: 0, 
+                scale: 0,
+                transform: "translate(-50%, -50%) scale(0)"
+              }}
+              transition={{ 
+                type: "spring", 
+                damping: 25, 
+                stiffness: 300,
+                duration: 0.4
+              }}
             >
               <div className="relative overflow-hidden rounded-3xl border border-white/30 bg-gradient-to-br from-white/20 to-white/5 p-6 sm:p-8 shadow-2xl backdrop-blur-2xl dark:from-navy-900/60 dark:to-navy-950/80 dark:border-white/10">
                 {/* Decorative gradient orbs */}
@@ -137,7 +154,7 @@ I visited your website and want information about CA courses at SAVI Academy.`;
                       placeholder="Enter your name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="h-12 rounded-xl border-white/20 bg-white/50 dark:bg-white/10 text-foreground placeholder:text-foreground/40 focus:border-[#25D366] focus:ring-[#25D366]/20 transition-all"
+                      className="h-12 rounded-xl border border-gray-300 dark:border-gray-600 bg-white/50 dark:bg-white/10 text-foreground placeholder:text-foreground/40 focus:border-[#25D366] focus:outline-none focus:ring-0 transition-all"
                     />
                   </div>
 
@@ -148,14 +165,14 @@ I visited your website and want information about CA courses at SAVI Academy.`;
                       value={formData.educationLevel}
                       onValueChange={(value) => setFormData({ ...formData, educationLevel: value })}
                     >
-                      <SelectTrigger className="h-12 rounded-xl border-white/20 bg-white/50 dark:bg-white/10 text-foreground focus:border-[#25D366] focus:ring-[#25D366]/20">
+                      <SelectTrigger className="h-12 rounded-xl border-2 border-white/20 bg-white/50 dark:bg-white/10 text-foreground focus:border-[#25D366] focus:outline-none">
                         <SelectValue placeholder="Select education level" />
                       </SelectTrigger>
-                      <SelectContent className="z-[100] rounded-xl border-white/20 bg-white dark:bg-navy-800 shadow-xl">
-                        <SelectItem value="11th" className="text-navy-900 dark:text-white rounded-lg">11th</SelectItem>
-                        <SelectItem value="12th" className="text-navy-900 dark:text-white rounded-lg">12th</SelectItem>
-                        <SelectItem value="Bachelors" className="text-navy-900 dark:text-white rounded-lg">Bachelors</SelectItem>
-                        <SelectItem value="Masters Degree" className="text-navy-900 dark:text-white rounded-lg">Masters Degree</SelectItem>
+                      <SelectContent className="z-[100] rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 shadow-xl">
+                        <SelectItem value="11th" className="text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800">11th</SelectItem>
+                        <SelectItem value="12th" className="text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800">12th</SelectItem>
+                        <SelectItem value="Bachelors" className="text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800">Bachelors</SelectItem>
+                        <SelectItem value="Masters Degree" className="text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800">Masters Degree</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
