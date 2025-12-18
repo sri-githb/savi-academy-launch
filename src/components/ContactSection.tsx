@@ -208,23 +208,29 @@ const ContactSection = () => {
               </motion.div>
             ))}
 
-            {/* Map Placeholder */}
+            {/* Map */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.9 }}
-              className="glass-card p-4 h-64 overflow-hidden"
+              className="glass-card p-4 h-64 overflow-hidden relative cursor-pointer group"
+              onClick={() => window.open('https://maps.app.goo.gl/DYKBNELUwf8jJXyU8?g_st=ac', '_blank')}
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125323.40216103475!2d79.07891774511719!3d10.78671380000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baab89cea453039%3A0xe113da9b1f632be6!2sThanjavur%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1702000000000!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.8456!2d79.1374!3d10.7867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baab8a5d8c8a8a9%3A0x1234567890abcdef!2sDiamond%20Residency%2C%20Muthu%20Nagar%2C%20Thanjavur!5e0!3m2!1sen!2sin!4v1702000000000!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
-                style={{ border: 0, borderRadius: '0.75rem' }}
+                style={{ border: 0, borderRadius: '0.75rem', pointerEvents: 'none' }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="SAVI Academy Location - Thanjavur"
               />
+              <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors rounded-xl flex items-center justify-center">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-primary font-medium bg-background/90 px-4 py-2 rounded-lg">
+                  Click to open in Google Maps
+                </span>
+              </div>
             </motion.div>
           </motion.div>
         </div>
