@@ -18,7 +18,7 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    const recipientEmail = 'sudarsansuresh24@gmail.com';
+    const recipientEmail = 'saviacademy1@gmail.com';
     const subject = `inquiry from ${formData.name}`;
     const body = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`;
 
