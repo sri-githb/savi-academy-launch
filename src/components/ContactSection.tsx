@@ -22,17 +22,24 @@ const ContactSection = () => {
     const subject = `Inquiry from ${formData.name}`;
     const body = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`;
 
-    // Use mailto: protocol to open native mail app on mobile and default email client on desktop
-    const mailtoUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // Detect if mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
-    // Create a temporary link element to trigger the mailto: URL
-    const link = document.createElement('a');
-    link.href = mailtoUrl;
-    link.click();
+    if (isMobile) {
+      // Use mailto: protocol for mobile to open native mail app
+      const mailtoUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const link = document.createElement('a');
+      link.href = mailtoUrl;
+      link.click();
+    } else {
+      // Use Gmail web compose for desktop
+      const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipientEmail)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.open(gmailComposeUrl, '_blank');
+    }
     
     toast({
       title: "Email app opened!",
-      description: "Please send the email from your mail app.",
+      description: isMobile ? "Please send the email from your mail app." : "Please send the email from Gmail.",
     });
     
     setFormData({ name: '', email: '', phone: '', message: '' });
