@@ -97,13 +97,13 @@ I visited your website and want information about CA courses at SAVI Academy.`;
 
             {/* Modal */}
             <motion.div
-              className="fixed left-1/2 top-1/2 z-50 w-[90%] max-w-md -translate-x-1/2 -translate-y-1/2"
+              className="fixed left-1/2 top-1/2 z-50 w-[90%] max-w-md -translate-x-1/2 -translate-y-1/2 px-4 sm:px-0"
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             >
-              <div className="relative rounded-2xl border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-xl dark:bg-navy-900/40">
+              <div className="relative rounded-2xl border border-white/20 bg-white/80 dark:bg-navy-900/80 p-5 sm:p-6 pb-6 sm:pb-8 shadow-2xl backdrop-blur-xl">
                 {/* Close Button */}
                 <button
                   onClick={() => setIsOpen(false)}
@@ -144,11 +144,11 @@ I visited your website and want information about CA courses at SAVI Academy.`;
                       <SelectTrigger className="border-white/20 bg-white/10 text-foreground focus:border-gold-400">
                         <SelectValue placeholder="Select education level" />
                       </SelectTrigger>
-                      <SelectContent className="border-white/20 bg-white/95 dark:bg-navy-800/95 backdrop-blur-xl">
-                        <SelectItem value="11th">11th</SelectItem>
-                        <SelectItem value="12th">12th</SelectItem>
-                        <SelectItem value="Bachelors">Bachelors</SelectItem>
-                        <SelectItem value="Masters Degree">Masters Degree</SelectItem>
+                      <SelectContent className="z-[100] border-white/20 bg-white dark:bg-navy-800 backdrop-blur-xl">
+                        <SelectItem value="11th" className="text-navy-900 dark:text-white">11th</SelectItem>
+                        <SelectItem value="12th" className="text-navy-900 dark:text-white">12th</SelectItem>
+                        <SelectItem value="Bachelors" className="text-navy-900 dark:text-white">Bachelors</SelectItem>
+                        <SelectItem value="Masters Degree" className="text-navy-900 dark:text-white">Masters Degree</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
