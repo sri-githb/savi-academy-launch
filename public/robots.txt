@@ -1,13 +1,42 @@
-User-agent: Googlebot
+# Allow all search engine bots
+User-agent: *
 Allow: /
 
-User-agent: Bingbot
+# Sitemap location
+Sitemap: https://saviacademy.in/sitemap.xml
+
+# Disallow admin and private directories
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /search
+Disallow: /*?*
+Disallow: /*.json
+Disallow: /*.xml$
+
+# Allow media files
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+
+# Crawl-delay: 10  # Uncomment if needed to reduce server load
+
+# Specific bot instructions
+User-agent: Googlebot-Image
+Allow: /images/
+
+User-agent: Googlebot-News
 Allow: /
 
-User-agent: Twitterbot
+User-agent: AdsBot-Google
 Allow: /
-
-User-agent: facebookexternalhit
 Allow: /
 
 User-agent: *
