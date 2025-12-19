@@ -25,27 +25,7 @@ const ContactSection = () => {
   }, []);
 
   const handleMapClick = () => {
-    if (!navigator.geolocation) {
-      window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(academyQuery)}`, '_blank');
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
-        setUserCoords({ lat, lng });
-
-        const url = `https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${encodeURIComponent(
-          academyQuery
-        )}`;
-        window.open(url, '_blank');
-      },
-      () => {
-        window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(academyQuery)}`, '_blank');
-      },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-    );
+    window.open('https://maps.app.goo.gl/ykMj2wUaVb5hdRrW9', '_blank');
   };
 
   const handleSubmit = (e: React.FormEvent) => {
