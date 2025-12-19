@@ -94,11 +94,11 @@ const TeamSection = () => {
   ];
 
   return (
-    <section id="team" className="py-24 relative overflow-hidden">
+    <section id="team" className={`py-24 relative overflow-hidden ${!isDark ? 'bg-[hsl(220,60%,15%)]' : ''}`}>
       {/* Background */}
-      <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-b from-background via-secondary/10 to-background' : 'bg-gradient-to-b from-background via-primary/5 to-background'}`} />
+      <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-b from-background via-secondary/10 to-background' : 'bg-gradient-to-b from-[hsl(220,60%,12%)] via-[hsl(220,55%,18%)] to-[hsl(220,60%,15%)]'}`} />
       <motion.div
-        className={`absolute bottom-1/4 left-0 w-80 h-80 rounded-full blur-3xl ${isDark ? 'bg-primary/5' : 'bg-primary/3'}`}
+        className={`absolute bottom-1/4 left-0 w-80 h-80 rounded-full blur-3xl ${isDark ? 'bg-primary/5' : 'bg-blue-400/10'}`}
         animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
         transition={{ duration: 6, repeat: Infinity }}
       />
@@ -111,13 +111,13 @@ const TeamSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full glass-card text-sm font-medium text-primary mb-4">
+          <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 ${isDark ? 'glass-card text-primary' : 'bg-white/10 backdrop-blur-sm border border-white/20 text-blue-300'}`}>
             Our Faculty
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
-            Meet Our Expert <span className="text-gold-gradient">CA Professionals</span>
+          <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-6 ${!isDark ? 'text-white' : ''}`}>
+            Meet Our Expert <span className={isDark ? 'text-gold-gradient' : 'text-blue-400'}>CA Professionals</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className={`text-lg ${isDark ? 'text-muted-foreground' : 'text-blue-100/80'}`}>
             Learn from the best in the industry. Our faculty comprises experienced Chartered Accountants dedicated to your success.
           </p>
         </motion.div>
@@ -130,7 +130,7 @@ const TeamSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="glass-card overflow-hidden group hover:border-primary/30 transition-all duration-300"
+              className={`overflow-hidden group transition-all duration-300 rounded-2xl border ${isDark ? 'glass-card hover:border-primary/30' : 'bg-white/10 backdrop-blur-sm border-white/20 hover:border-blue-400/40'}`}
               whileHover={{ y: -8 }}
               onMouseEnter={() => setHoveredMember(member.name)}
               onMouseLeave={() => setHoveredMember(null)}
