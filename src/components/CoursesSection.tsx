@@ -26,10 +26,10 @@ const CoursesSection = () => {
       students: '4 Papers',
       icon: BookOpen,
       subjects: [
-        'Paper 1: Accounting (Applicable from May 2025 Exam onwards)',
-        'Paper 2: Business Laws (Applicable from May 2025 Exam onwards)',
-        'Paper 3: Quantitative Aptitude (Applicable from May 2025 Exam onwards)',
-        'Paper 4: Business Economics (Applicable from May 2025 Exam onwards)',
+        'Paper 1: Accounting',
+        'Paper 2: Business Laws',
+        'Paper 3: Quantitative Aptitude',
+        'Paper 4: Business Economics',
         'Corrigendum: Include wherever applicable',
       ],
       features: [
@@ -46,15 +46,15 @@ const CoursesSection = () => {
       students: '8 Papers',
       icon: Calculator,
       subjects: [
-        'Paper 1: Advanced Accounting (Applicable from May 2026 Examination onwards)',
-        'Paper 2: Corporate and Other Laws (Applicable from May 2026 Examination onwards)',
-        'Paper 3: Taxation (Section A: Income-tax Law) (Applicable for May 2026 / September 2026 / January 2027 Exams)',
-        'Paper 3: Taxation (Section B: Goods and Services Tax) (Applicable for May 2026 / September 2026 / January 2027 Exams)',
+        'Paper 1: Advanced Accounting',
+        'Paper 2: Corporate and Other Laws',
+        'Paper 3: Taxation (Section A: Income-tax Law)',
+        'Paper 3: Taxation (Section B: Goods and Services Tax)',
         'Corrigendum: GST Section B',
-        'Paper 4: Cost and Management Accounting (Applicable from May 2026 Examination onwards)',
-        'Paper 5: Auditing and Ethics (Applicable from May 2026 Examination onwards)',
+        'Paper 4: Cost and Management Accounting',
+        'Paper 5: Auditing and Ethics',
         'Paper 6: Section A: Financial Management',
-        'Paper 6: Section B: Strategic Management (Applicable from May 2026 Exam onwards)',
+        'Paper 6: Section B: Strategic Managemen',
       ],
       features: [
         'In-depth subject coverage',
@@ -96,59 +96,65 @@ const CoursesSection = () => {
         </motion.div>
 
         {/* Courses Grid */}
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 max-w-4xl mx-auto">
           {courses.map((course, index) => (
             <motion.div
               key={course.title}
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className={`overflow-hidden group rounded-2xl border ${isDark ? 'glass-card' : 'bg-white shadow-lg border-border/50'}`}
+              className={`overflow-hidden group rounded-xl sm:rounded-2xl border ${isDark ? 'glass-card' : 'bg-white shadow-sm sm:shadow-lg border-border/30'}`}
             >
               {/* Course Header */}
-              <div className="p-8 border-b border-border/30">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <course.icon className="w-8 h-8 text-primary" />
+              <div className="p-5 sm:p-6 md:p-8 border-b border-border/30">
+                <div className="flex items-start justify-between mb-3 sm:mb-4">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <button className="w-full mt-4 sm:mt-6 px-4 py-2.5 sm:px-6 sm:py-3 bg-primary text-white text-sm sm:text-base rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                      Enroll Now
+                    </button>
                   </div>
-                  <div className="flex gap-3">
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary/50 text-sm">
-                      <Clock className="w-4 h-4 text-primary" />
-                      {course.duration}
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 ml-3">
+                    <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-secondary/50 text-xs sm:text-sm">
+                      <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
+                      <span className="whitespace-nowrap">{course.duration}</span>
                     </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary/50 text-sm">
-                      <FileText className="w-4 h-4 text-primary" />
-                      {course.students}
+                    <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-secondary/50 text-xs sm:text-sm">
+                      <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
+                      <span className="whitespace-nowrap">{course.students}</span>
                     </div>
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-3">{course.title}</h3>
-                <p className="text-muted-foreground">{course.description}</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3">{course.title}</h3>
+                <p className="text-sm sm:text-base text-muted-foreground">{course.description}</p>
               </div>
 
               {/* Subjects */}
-              <div className="p-8 border-b border-border/30">
-                <h4 className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">Subjects Covered</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {course.subjects.map((subject) => (
-                    <div key={subject} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Scale className="w-4 h-4 text-primary shrink-0" />
-                      {subject}
+              <div className="p-5 sm:p-6 md:p-8 border-b border-border/30">
+                <h4 className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider mb-3 sm:mb-4">Subjects Covered</h4>
+                <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                  {course.subjects.map((subject, index) => (
+                    <div key={index} className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg bg-secondary/30">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Scale className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
+                      </div>
+                      <span className="text-xs sm:text-sm font-medium leading-tight">{subject}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Features */}
-              <div className="p-8">
-                <h4 className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">What's Included</h4>
-                <div className="space-y-2">
-                  {course.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-2 text-sm text-foreground">
-                      <CheckCircle className="w-4 h-4 text-primary shrink-0" />
-                      {feature}
-                    </div>
-                  ))}
+              <div className="container mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-24">
+                <div className="text-center mb-12 md:mb-16">
+                  <h4 className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">What's Included</h4>
+                  <div className="space-y-2">
+                    {course.features.map((feature, index) => (
+                      <div key={index} className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-xs sm:text-sm text-foreground/90 leading-relaxed">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>
