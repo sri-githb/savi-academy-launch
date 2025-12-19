@@ -41,7 +41,7 @@ const TeamSection = () => {
 
   const team = [
     {
-      name: 'CA GOKULNATH R',
+      name: 'CA gogulnath R',
       image: caGokul,
       qualification: 'CA',
       role: 'Faculty',
