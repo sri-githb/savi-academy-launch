@@ -110,7 +110,7 @@ const Navbar = () => {
               className={`ml-4 text-sm rounded-xl px-6 py-3 font-semibold transition-all duration-300 ${
                 isDark 
                   ? 'btn-primary' 
-                  : 'bg-white text-navy hover:bg-white/90'
+                  : 'bg-accent text-accent-foreground hover:bg-accent/90'
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -150,7 +150,7 @@ const Navbar = () => {
                   className={`px-4 py-3 rounded-lg transition-colors text-left ${
                     isDark 
                       ? 'text-muted-foreground hover:text-foreground hover:bg-secondary/30' 
-                      : 'text-white/80 hover:text-white hover:bg-white/10'
+                      : 'text-white/80 hover:text-white hover:bg-accent/15'
                   }`}
                 >
                   {item.label}
@@ -162,7 +162,7 @@ const Navbar = () => {
                 className={`w-full text-center rounded-xl px-6 py-3 font-semibold ${
                   isDark 
                     ? 'btn-primary' 
-                    : 'bg-white text-navy hover:bg-white/90'
+                    : 'bg-accent text-accent-foreground hover:bg-accent/90'
                 }`}
               >
                 Enroll Now

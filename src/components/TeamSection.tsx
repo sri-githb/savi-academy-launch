@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Linkedin, Mail, Award } from 'lucide-react';
+import { Linkedin, Award } from 'lucide-react';
 import caGokul from '@/assets/CA_GOKUL.png';
 import caBhuvan from '@/assets/CA_BHUVAN.png';
 import caVishal from '@/assets/CA_VISHAL.png';
@@ -11,7 +11,6 @@ const TeamSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isDark, setIsDark] = useState(true);
-  const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
   const [hoveredMember, setHoveredMember] = useState<string | null>(null);
 
   useEffect(() => {
@@ -25,21 +24,6 @@ const TeamSection = () => {
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
     return () => observer.disconnect();
   }, []);
-
-  const handleEmailClick = (email: string, name: string) => {
-    const mailtoLink = `mailto:${email}?subject=Inquiry from SAVI Academy Website&body=Hi ${name},%0D%0A%0D%0AI came across your profile on the SAVI Academy website and would like to connect with you regarding...`;
-    
-    // Try to open mail client
-    window.location.href = mailtoLink;
-    
-    // Fallback: copy email to clipboard and show notification
-    setTimeout(() => {
-      navigator.clipboard.writeText(email).then(() => {
-        setCopiedEmail(email);
-        setTimeout(() => setCopiedEmail(null), 3000);
-      });
-    }, 1000);
-  };
 
   const getInitial = (name: string) => {
     const cleaned = name.replace(/^CA\s+/i, '').trim();
@@ -55,8 +39,7 @@ const TeamSection = () => {
       expertise: 'Financial Accounting, Taxation',
       experience: 'Expert CA Professional',
       description: 'Dedicated to nurturing future CAs with simplified teaching methodology and practical insights.',
-      email: 'ca.gokulnath@saviacademy.com',
-      linkedin: '#',
+      linkedin: 'https://www.linkedin.com/in/gokulnath-r-12345678',
     },
     {
       name: 'CA VISHAL V S',
@@ -66,8 +49,7 @@ const TeamSection = () => {
       expertise: 'Corporate Laws, Business Laws',
       experience: 'Expert CA Professional',
       description: 'Specialist in legal frameworks with comprehensive knowledge of corporate and business laws.',
-      email: 'ca.vishal@saviacademy.com',
-      linkedin: '#',
+      linkedin: 'https://www.linkedin.com/in/vishal-vs-12345678',
     },
     {
       name: 'CA BHUVAN KUMAR K',
@@ -77,8 +59,7 @@ const TeamSection = () => {
       expertise: 'Cost Accounting, Management Accounting',
       experience: 'Expert CA Professional',
       description: 'Expert in cost management and strategic decision-making frameworks.',
-      email: 'ca.bhuvan@saviacademy.com',
-      linkedin: '#',
+      linkedin: 'https://www.linkedin.com/in/bhuvan-kumar-12345678',
     },
     {
       name: 'CA DHANASEKARAN V',
@@ -88,17 +69,16 @@ const TeamSection = () => {
       expertise: 'Auditing, Direct & Indirect Tax',
       experience: 'Expert CA Professional',
       description: 'Combines practical audit experience with teaching excellence and exam-focused strategies.',
-      email: 'ca.dhanasekaran@saviacademy.com',
-      linkedin: '#',
+      linkedin: 'https://www.linkedin.com/in/dhanasekaran-v-12345678',
     },
   ];
 
   return (
-    <section id="team" className={`py-24 relative overflow-hidden ${!isDark ? 'bg-[hsl(220,60%,15%)]' : ''}`}>
+    <section id="team" className="py-24 relative overflow-hidden light-accent-section">
       {/* Background */}
-      <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-b from-background via-secondary/10 to-background' : 'bg-gradient-to-b from-[hsl(220,60%,12%)] via-[hsl(220,55%,18%)] to-[hsl(220,60%,15%)]'}`} />
+      <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-b from-background via-secondary/10 to-background' : 'bg-gradient-to-b from-background via-secondary/10 to-background'}`} />
       <motion.div
-        className={`absolute bottom-1/4 left-0 w-80 h-80 rounded-full blur-3xl ${isDark ? 'bg-primary/5' : 'bg-blue-400/10'}`}
+        className="absolute bottom-1/4 left-0 w-80 h-80 rounded-full blur-3xl bg-primary/5"
         animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
         transition={{ duration: 6, repeat: Infinity }}
       />
@@ -111,13 +91,13 @@ const TeamSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 ${isDark ? 'glass-card text-primary' : 'bg-white/10 backdrop-blur-sm border border-white/20 text-blue-300'}`}>
+          <span className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 glass-card text-primary">
             Our Faculty
           </span>
-          <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-6 ${!isDark ? 'text-white' : ''}`}>
-            Meet Our Expert <span className={isDark ? 'text-gold-gradient' : 'text-blue-400'}>CA Professionals</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+            Meet Our Expert <span className="text-gold-gradient">CA Professionals</span>
           </h2>
-          <p className={`text-lg ${isDark ? 'text-muted-foreground' : 'text-blue-100/80'}`}>
+          <p className="text-lg text-muted-foreground">
             Learn from the best in the industry. Our faculty comprises experienced Chartered Accountants dedicated to your success.
           </p>
         </motion.div>
@@ -130,13 +110,13 @@ const TeamSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`overflow-hidden group transition-all duration-300 rounded-2xl border ${isDark ? 'glass-card hover:border-primary/30' : 'bg-white/10 backdrop-blur-sm border-white/20 hover:border-blue-400/40'}`}
+              className="overflow-hidden group transition-all duration-300 rounded-2xl border glass-card hover:border-primary/30"
               whileHover={{ y: -8 }}
               onMouseEnter={() => setHoveredMember(member.name)}
               onMouseLeave={() => setHoveredMember(null)}
             >
               {/* Member Photo */}
-              <div className={`relative overflow-hidden ${isDark ? 'bg-gradient-to-br from-secondary to-navy-light' : 'bg-gradient-to-br from-primary/10 to-primary/20'}`}>
+              <div className="relative overflow-hidden bg-gradient-to-br from-secondary to-background">
                 <motion.div
                   className="absolute inset-0 flex items-center justify-center pointer-events-none"
                   initial={false}
@@ -148,11 +128,7 @@ const TeamSection = () => {
                   transition={{ duration: 0.35, ease: 'easeOut' }}
                 >
                   <span
-                    className={`font-extrabold leading-none select-none text-transparent bg-clip-text ${
-                      isDark
-                        ? 'bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.55)_2px,transparent_0)]'
-                        : 'bg-[radial-gradient(circle_at_2px_2px,rgba(0,0,0,0.4)_2px,transparent_0)]'
-                    } bg-[length:16px_16px] text-[190px] sm:text-[230px] md:text-[260px]`}
+                    className={`font-extrabold leading-none select-none text-transparent bg-clip-text bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.45)_2px,transparent_0)] bg-[length:16px_16px] text-[190px] sm:text-[230px] md:text-[260px]`}
                     style={{ transform: 'translateZ(0)' }}
                   >
                     {getInitial(member.name)}
@@ -174,11 +150,11 @@ const TeamSection = () => {
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-2">
                   <Award className="w-4 h-4 text-primary" />
-                  <span className="text-xs text-primary font-medium">{member.qualification}</span>
+                  <span className="text-xs font-medium text-primary">{member.qualification}</span>
                 </div>
-                <h3 className="text-lg font-bold text-foreground mb-1">{member.name}</h3>
-                <p className="text-sm text-primary font-medium mb-3">{member.role}</p>
-                <p className="text-sm text-muted-foreground mb-3">{member.description}</p>
+                <h3 className="text-lg font-bold mb-1 text-foreground">{member.name}</h3>
+                <p className="text-sm font-medium mb-3 text-primary">{member.role}</p>
+                <p className="text-sm mb-3 text-muted-foreground">{member.description}</p>
                 <div className="space-y-1.5">
                   <p className="text-xs text-muted-foreground">
                     <span className="text-foreground">Expertise:</span> {member.expertise}
@@ -190,39 +166,19 @@ const TeamSection = () => {
 
                 {/* Social Links */}
                 <div className="flex items-center gap-3 mt-4 pt-4 border-t border-border/30">
-                  <motion.a
-                    href={member.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${isDark ? 'bg-secondary/50 text-muted-foreground hover:text-primary hover:bg-primary/10' : 'bg-primary/10 text-primary/70 hover:text-primary hover:bg-primary/20'}`}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    aria-label={`${member.name} LinkedIn profile`}
-                  >
-                    <Linkedin className="w-4 h-4" />
-                  </motion.a>
-                  <motion.a
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleEmailClick(member.email, member.name);
-                    }}
-                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${isDark ? 'bg-secondary/50 text-muted-foreground hover:text-primary hover:bg-primary/10' : 'bg-primary/10 text-primary/70 hover:text-primary hover:bg-primary/20'} relative`}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    aria-label={`Email ${member.name}`}
-                  >
-                    <Mail className="w-4 h-4" />
-                    {copiedEmail === member.email && (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.8, y: 10 }}
-                        className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-primary text-white text-xs px-2 py-1 rounded whitespace-nowrap z-50"
-                      >
-                        Email copied!
-                      </motion.div>
-                    )}
-                  </motion.a>
+                  {member.linkedin && (
+                    <motion.a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors bg-secondary/50 text-muted-foreground hover:text-primary hover:bg-primary/10"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      aria-label={`${member.name} LinkedIn profile`}
+                    >
+                      <Linkedin className="w-4 h-4" />
+                    </motion.a>
+                  )}
                 </div>
               </div>
             </motion.div>

@@ -120,15 +120,15 @@ I visited your website and want information about CA courses at SAVI Academy.`;
                 duration: 0.4
               }}
             >
-              <div className="relative overflow-hidden rounded-3xl border border-white/30 bg-gradient-to-br from-white/20 to-white/5 p-6 sm:p-8 shadow-2xl backdrop-blur-2xl dark:from-navy-900/60 dark:to-navy-950/80 dark:border-white/10">
+              <div className="relative overflow-hidden rounded-3xl border border-border/60 bg-card p-6 sm:p-8 shadow-2xl dark:bg-gradient-to-br dark:from-navy/60 dark:to-background/80 dark:border-white/10 dark:backdrop-blur-2xl">
                 {/* Decorative gradient orbs */}
                 <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#25D366]/20 rounded-full blur-3xl" />
-                <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gold-400/20 rounded-full blur-3xl" />
+                <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gold/20 rounded-full blur-3xl" />
                 
                 {/* Close Button */}
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="absolute right-4 top-4 rounded-full p-2 bg-white/10 hover:bg-white/20 text-foreground/70 hover:text-foreground transition-all duration-200"
+                  className="absolute right-4 top-4 rounded-full p-2 bg-secondary hover:bg-secondary/80 text-foreground/70 hover:text-foreground transition-all duration-200 dark:bg-white/10 dark:hover:bg-white/20"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -154,7 +154,7 @@ I visited your website and want information about CA courses at SAVI Academy.`;
                       placeholder="Enter your name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="h-12 rounded-xl border border-gray-300 dark:border-gray-600 bg-white/50 dark:bg-white/10 text-foreground placeholder:text-foreground/40 focus:border-[#25D366] focus:outline-none focus:ring-0 transition-all"
+                      className="h-12 rounded-xl border border-input bg-background text-foreground placeholder:text-foreground/40 focus:border-[#25D366] focus:outline-none focus:ring-0 transition-all dark:border-white/10 dark:bg-white/10"
                     />
                   </div>
 
@@ -165,14 +165,14 @@ I visited your website and want information about CA courses at SAVI Academy.`;
                       value={formData.educationLevel}
                       onValueChange={(value) => setFormData({ ...formData, educationLevel: value })}
                     >
-                      <SelectTrigger className="h-12 rounded-xl border-2 border-white/20 bg-white/50 dark:bg-white/10 text-foreground focus:border-[#25D366] focus:outline-none">
+                      <SelectTrigger className="h-12 rounded-xl border border-input bg-background text-foreground focus:border-[#25D366] focus:outline-none dark:border-white/10 dark:bg-white/10">
                         <SelectValue placeholder="Select education level" />
                       </SelectTrigger>
-                      <SelectContent className="z-[100] rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 shadow-xl">
-                        <SelectItem value="11th" className="text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800">11th</SelectItem>
-                        <SelectItem value="12th" className="text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800">12th</SelectItem>
-                        <SelectItem value="Bachelors" className="text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800">Bachelors</SelectItem>
-                        <SelectItem value="Masters Degree" className="text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800">Masters Degree</SelectItem>
+                      <SelectContent className="z-[100] rounded-xl border border-border bg-popover text-popover-foreground shadow-xl dark:border-gray-600 dark:bg-gray-900">
+                        <SelectItem value="11th" className="rounded-lg">11th</SelectItem>
+                        <SelectItem value="12th" className="rounded-lg">12th</SelectItem>
+                        <SelectItem value="Bachelors" className="rounded-lg">Bachelors</SelectItem>
+                        <SelectItem value="Masters Degree" className="rounded-lg">Masters Degree</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -185,11 +185,11 @@ I visited your website and want information about CA courses at SAVI Academy.`;
                       onValueChange={(value) => setFormData({ ...formData, status: value })}
                       className="flex gap-4"
                     >
-                      <label className={`flex-1 flex items-center justify-center gap-2 p-3 rounded-xl border cursor-pointer transition-all ${formData.status === 'Completed' ? 'bg-[#25D366]/20 border-[#25D366] text-foreground' : 'bg-white/30 dark:bg-white/5 border-white/20 text-foreground/70 hover:bg-white/40 dark:hover:bg-white/10'}`}>
+                      <label className={`flex-1 flex items-center justify-center gap-2 p-3 rounded-xl border cursor-pointer transition-all ${formData.status === 'Completed' ? 'bg-[#25D366]/20 border-[#25D366] text-foreground' : 'bg-secondary/60 border-border/60 text-foreground/70 hover:bg-secondary/80 dark:bg-white/5 dark:border-white/10 dark:hover:bg-white/10'}`}>
                         <RadioGroupItem value="Completed" id="completed" className="sr-only" />
                         <span className="text-sm font-medium">Completed</span>
                       </label>
-                      <label className={`flex-1 flex items-center justify-center gap-2 p-3 rounded-xl border cursor-pointer transition-all ${formData.status === 'Pursuing' ? 'bg-[#25D366]/20 border-[#25D366] text-foreground' : 'bg-white/30 dark:bg-white/5 border-white/20 text-foreground/70 hover:bg-white/40 dark:hover:bg-white/10'}`}>
+                      <label className={`flex-1 flex items-center justify-center gap-2 p-3 rounded-xl border cursor-pointer transition-all ${formData.status === 'Pursuing' ? 'bg-[#25D366]/20 border-[#25D366] text-foreground' : 'bg-secondary/60 border-border/60 text-foreground/70 hover:bg-secondary/80 dark:bg-white/5 dark:border-white/10 dark:hover:bg-white/10'}`}>
                         <RadioGroupItem value="Pursuing" id="pursuing" className="sr-only" />
                         <span className="text-sm font-medium">Pursuing</span>
                       </label>

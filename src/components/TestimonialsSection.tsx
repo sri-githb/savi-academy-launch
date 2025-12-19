@@ -8,14 +8,14 @@ const TestimonialsSection = () => {
 
   const testimonials = [
     {
-      name: 'Priya Sharma',
+      name: 'Priyanka',
       course: 'CA Foundation',
       rating: 5,
       text: 'SAVI Academy transformed my understanding of accounting fundamentals. The faculty\'s dedication and personalized attention helped me clear CA Foundation in my first attempt!',
       result: 'Cleared in 1st Attempt',
     },
     {
-      name: 'Rahul Krishnan',
+      name: 'Vijay kumar',
       course: 'CA Intermediate',
       rating: 5,
       text: 'The structured approach and comprehensive study materials at SAVI Academy are exceptional. The mock tests and doubt sessions were instrumental in my success.',

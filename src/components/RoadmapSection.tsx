@@ -51,8 +51,19 @@ const RoadmapSection = () => {
 
   return (
     <section id="roadmap" className="py-24 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-navy/20 to-background" />
+      {/* Background with CA-themed pattern */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-navy/20 to-background">
+        <div className="absolute inset-0 opacity-5 dark:opacity-[0.03]" style={{
+          backgroundImage: `
+            linear-gradient(45deg, currentColor 1px, transparent 1px),
+            linear-gradient(-45deg, currentColor 1px, transparent 1px),
+            linear-gradient(90deg, currentColor 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px',
+          backgroundPosition: 'center center',
+          maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)'
+        }} />
+      </div>
       <motion.div
         className="absolute top-1/3 right-0 w-96 h-96 rounded-full bg-primary/5 blur-3xl"
         animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.4, 0.2] }}
@@ -97,7 +108,7 @@ const RoadmapSection = () => {
                 {/* Content */}
                 <div className={`${index % 2 === 0 ? 'lg:text-right lg:pr-12' : 'lg:text-left lg:pl-12 lg:col-start-2'}`}>
                   <motion.div
-                    className="glass-card p-6 lg:p-8 group hover:border-primary/30 transition-all duration-300"
+                    className="glass-card p-6 lg:p-8 group hover:border-primary/30 transition-all duration-300 rounded-2xl"
                     whileHover={{ y: -5 }}
                   >
                     <div className={`flex items-center gap-4 mb-4 ${index % 2 === 0 ? 'lg:flex-row-reverse' : ''}`}>
@@ -141,13 +152,14 @@ const RoadmapSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-16 glass-card p-8 text-center"
         >
-          <h3 className="text-2xl font-bold text-foreground mb-2">Total Estimated Duration</h3>
-          <p className="text-4xl font-bold text-gold-gradient mb-4">4.5 - 5 Years</p>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            With dedication and proper guidance from SAVI Academy, you can complete your CA journey and join the prestigious community of Chartered Accountants.
-          </p>
+          <div className="mt-16 glass-card p-8 text-center rounded-2xl">
+            <h3 className="text-2xl font-bold text-foreground mb-2">Total Estimated Duration</h3>
+            <p className="text-4xl font-bold text-gold-gradient mb-4">4.5 - 5 Years</p>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              With dedication and proper guidance from SAVI Academy, you can complete your CA journey and join the prestigious community of Chartered Accountants.
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>

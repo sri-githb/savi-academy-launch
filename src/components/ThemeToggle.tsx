@@ -42,7 +42,7 @@ const ThemeToggle = () => {
       style={{
         background: isDark 
           ? 'linear-gradient(135deg, hsl(220 50% 12%), hsl(220 40% 18%))' 
-          : 'linear-gradient(135deg, hsl(220 70% 30%), hsl(220 80% 20%))'
+          : 'linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--card)))'
       }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
@@ -86,14 +86,14 @@ const ThemeToggle = () => {
               animate={{ opacity: 0.6, x: 0 }}
               exit={{ opacity: 0, x: 10 }}
               transition={{ delay: 0.1 }}
-              className="absolute top-1 right-1 w-3 h-1.5 bg-white/50 rounded-full"
+              className="absolute top-1 right-1 w-3 h-1.5 bg-foreground/15 rounded-full"
             />
             <motion.span
               initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: 0.4, x: 0 }}
               exit={{ opacity: 0, x: 10 }}
               transition={{ delay: 0.2 }}
-              className="absolute bottom-1.5 right-2 w-2 h-1 bg-white/40 rounded-full"
+              className="absolute bottom-1.5 right-2 w-2 h-1 bg-foreground/10 rounded-full"
             />
           </>
         )}
