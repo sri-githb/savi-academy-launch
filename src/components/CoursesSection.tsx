@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { BookOpen, Calculator, FileText, Scale, Clock, Users, CheckCircle } from 'lucide-react';
@@ -5,6 +6,17 @@ import { BookOpen, Calculator, FileText, Scale, Clock, Users, CheckCircle } from
 const CoursesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    };
+    checkTheme();
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
 
   const courses = [
     {
@@ -55,11 +67,11 @@ const CoursesSection = () => {
   ];
 
   return (
-    <section id="courses" className="py-24 relative overflow-hidden">
+    <section id="courses" className={`py-24 relative overflow-hidden ${!isDark ? 'bg-[hsl(220,25%,94%)]' : ''}`}>
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/10 to-background" />
+      <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-b from-background via-secondary/10 to-background' : 'bg-gradient-to-b from-[hsl(220,30%,92%)] via-[hsl(220,25%,96%)] to-[hsl(220,25%,94%)]'}`} />
       <motion.div
-        className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-primary/5 blur-3xl"
+        className={`absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl ${isDark ? 'bg-primary/5' : 'bg-primary/10'}`}
         animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
         transition={{ duration: 5, repeat: Infinity }}
       />
@@ -72,7 +84,7 @@ const CoursesSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full glass-card text-sm font-medium text-primary mb-4">
+          <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 ${isDark ? 'glass-card text-primary' : 'bg-primary/10 border border-primary/20 text-primary'}`}>
             Our Courses
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
@@ -91,7 +103,7 @@ const CoursesSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="glass-card overflow-hidden group"
+              className={`overflow-hidden group rounded-2xl border ${isDark ? 'glass-card' : 'bg-white shadow-lg border-border/50'}`}
             >
               {/* Course Header */}
               <div className="p-8 border-b border-border/30">
@@ -148,7 +160,7 @@ const CoursesSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 glass-card p-6 flex items-center justify-center gap-4"
+          className={`mt-12 p-6 flex items-center justify-center gap-4 rounded-2xl border ${isDark ? 'glass-card' : 'bg-white shadow-md border-border/50'}`}
         >
           <Users className="w-6 h-6 text-primary shrink-0" />
           <p className="text-muted-foreground text-center">
