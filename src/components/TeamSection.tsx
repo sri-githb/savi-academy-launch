@@ -32,7 +32,7 @@ const TeamSection = () => {
 
   const team = [
     {
-      name: 'CA Gogulnath R',
+      name: 'CA GOGULNATH R',
       image: caGokul,
       qualification: 'CA',
       role: 'Faculty',
@@ -118,18 +118,24 @@ const TeamSection = () => {
               {/* Member Photo */}
               <div className="relative overflow-hidden bg-gradient-to-br from-secondary to-background">
                 <motion.div
-                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                  className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-visible"
                   initial={false}
                   animate={
                     hoveredMember === member.name
-                      ? { opacity: 1, scale: 1, rotate: 0 }
-                      : { opacity: 0, scale: 0.92, rotate: -8 }
+                      ? { opacity: 1, scale: 1.1, rotate: 0 }
+                      : { opacity: 0.5, scale: 0.95, rotate: -5 }
                   }
-                  transition={{ duration: 0.35, ease: 'easeOut' }}
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
                 >
                   <span
-                    className={`font-extrabold leading-none select-none text-transparent bg-clip-text bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.45)_2px,transparent_0)] bg-[length:16px_16px] text-[190px] sm:text-[230px] md:text-[260px]`}
-                    style={{ transform: 'translateZ(0)' }}
+                    className="font-black leading-none select-none text-transparent text-[220px] sm:text-[280px] md:text-[320px]"
+                    style={{
+                      transform: 'translateZ(0)',
+                      textShadow: '4px 4px 8px rgba(0,0,0,0.1)',
+                      WebkitTextStroke: '1px rgba(255,255,255,0.05)',
+                      opacity: 0.08,
+                      color: 'currentColor'
+                    }}
                   >
                     {getInitial(member.name)}
                   </span>
@@ -147,7 +153,7 @@ const TeamSection = () => {
               </div>
 
               {/* Content */}
-              <div className="p-6">
+              <div className="p-6 relative z-10 bg-background/80 backdrop-blur-sm">
                 <div className="flex items-center gap-2 mb-2">
                   <Award className="w-4 h-4 text-primary" />
                   <span className="text-xs font-medium text-primary">{member.qualification}</span>

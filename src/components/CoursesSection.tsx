@@ -109,9 +109,7 @@ const CoursesSection = () => {
               <div className="p-5 sm:p-6 md:p-8 border-b border-border/30">
                 <div className="flex items-start justify-between mb-3 sm:mb-4">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <button className="w-full mt-4 sm:mt-6 px-4 py-2.5 sm:px-6 sm:py-3 bg-primary text-white text-sm sm:text-base rounded-lg font-medium hover:bg-primary/90 transition-colors">
-                      Enroll Now
-                    </button>
+                    <course.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                   </div>
                   <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 ml-3">
                     <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-secondary/50 text-xs sm:text-sm">
@@ -125,7 +123,13 @@ const CoursesSection = () => {
                   </div>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3">{course.title}</h3>
-                <p className="text-sm sm:text-base text-muted-foreground">{course.description}</p>
+                <p className="text-sm sm:text-base text-muted-foreground mb-4">{course.description}</p>
+                <a 
+                  href="#contact" 
+                  className="inline-block w-full sm:w-auto text-center px-6 py-3 bg-primary text-white text-sm sm:text-base rounded-lg font-medium hover:bg-primary/90 transition-colors hover:shadow-lg hover:-translate-y-0.5 transform transition-all duration-200"
+                >
+                  Enroll Now
+                </a>
               </div>
 
               {/* Subjects */}
