@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Send, MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
@@ -7,12 +7,46 @@ const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     message: '',
   });
+
+  const academyQuery = 'Diamond Residency, Muthu Nagar, Thanjavur, Tamil Nadu 613005';
+  const academyEmbedUrl =
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.8456!2d79.1374!3d10.7867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baab8a5d8c8a8a9%3A0x1234567890abcdef!2sDiamond%20Residency%2C%20Muthu%20Nagar%2C%20Thanjavur!5e0!3m2!1sen!2sin!4v1702000000000!5m2!1sen!2sin';
+
+  useEffect(() => {
+    // Avoid forcing a location permission prompt on load.
+    // We'll request location when the user clicks the map.
+  }, []);
+
+  const handleMapClick = () => {
+    if (!navigator.geolocation) {
+      window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(academyQuery)}`, '_blank');
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        setUserCoords({ lat, lng });
+
+        const url = `https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${encodeURIComponent(
+          academyQuery
+        )}`;
+        window.open(url, '_blank');
+      },
+      () => {
+        window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(academyQuery)}`, '_blank');
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+    );
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -223,10 +257,14 @@ const ContactSection = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.9 }}
               className="glass-card p-4 h-64 overflow-hidden relative cursor-pointer group"
-              onClick={() => window.open('https://maps.app.goo.gl/DYKBNELUwf8jJXyU8?g_st=ac', '_blank')}
+              onClick={handleMapClick}
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.8456!2d79.1374!3d10.7867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baab8a5d8c8a8a9%3A0x1234567890abcdef!2sDiamond%20Residency%2C%20Muthu%20Nagar%2C%20Thanjavur!5e0!3m2!1sen!2sin!4v1702000000000!5m2!1sen!2sin"
+                src={
+                  userCoords
+                    ? `https://www.google.com/maps?q=${userCoords.lat},${userCoords.lng}&z=15&output=embed`
+                    : academyEmbedUrl
+                }
                 width="100%"
                 height="100%"
                 style={{ border: 0, borderRadius: '0.75rem', pointerEvents: 'none' }}

@@ -12,11 +12,13 @@ const TeamSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isDark, setIsDark] = useState(true);
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
+  const [hoveredMember, setHoveredMember] = useState<string | null>(null);
 
   useEffect(() => {
     const checkTheme = () => {
       setIsDark(document.documentElement.classList.contains('dark'));
     };
+
     checkTheme();
     
     const observer = new MutationObserver(checkTheme);
@@ -39,9 +41,14 @@ const TeamSection = () => {
     }, 1000);
   };
 
+  const getInitial = (name: string) => {
+    const cleaned = name.replace(/^CA\s+/i, '').trim();
+    return (cleaned[0] || '').toUpperCase();
+  };
+
   const team = [
     {
-      name: 'CA gogulnath R',
+      name: 'CA Gogulnath R',
       image: caGokul,
       qualification: 'CA',
       role: 'Faculty',
@@ -125,13 +132,36 @@ const TeamSection = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="glass-card overflow-hidden group hover:border-primary/30 transition-all duration-300"
               whileHover={{ y: -8 }}
+              onMouseEnter={() => setHoveredMember(member.name)}
+              onMouseLeave={() => setHoveredMember(null)}
             >
               {/* Member Photo */}
               <div className={`relative overflow-hidden ${isDark ? 'bg-gradient-to-br from-secondary to-navy-light' : 'bg-gradient-to-br from-primary/10 to-primary/20'}`}>
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                  initial={false}
+                  animate={
+                    hoveredMember === member.name
+                      ? { opacity: 1, scale: 1, rotate: 0 }
+                      : { opacity: 0, scale: 0.92, rotate: -8 }
+                  }
+                  transition={{ duration: 0.35, ease: 'easeOut' }}
+                >
+                  <span
+                    className={`font-extrabold leading-none select-none text-transparent bg-clip-text ${
+                      isDark
+                        ? 'bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.55)_2px,transparent_0)]'
+                        : 'bg-[radial-gradient(circle_at_2px_2px,rgba(0,0,0,0.4)_2px,transparent_0)]'
+                    } bg-[length:16px_16px] text-[190px] sm:text-[230px] md:text-[260px]`}
+                    style={{ transform: 'translateZ(0)' }}
+                  >
+                    {getInitial(member.name)}
+                  </span>
+                </motion.div>
                 <img 
                   src={member.image} 
                   alt={member.name}
-                  className="w-full h-auto object-contain"
+                  className="w-full h-auto object-contain relative z-10"
                 />
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-t from-background to-transparent"

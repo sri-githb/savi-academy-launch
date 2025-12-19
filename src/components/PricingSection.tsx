@@ -9,7 +9,7 @@ const PricingSection = () => {
   const plans = [
     {
       name: 'CA Foundation',
-      price: '₹35,000',
+      price: '₹25,000',
       duration: 'Complete Course',
       description: 'Comprehensive preparation for CA Foundation exam',
       features: [
@@ -27,7 +27,7 @@ const PricingSection = () => {
     },
     {
       name: 'CA Intermediate',
-      price: '₹65,000',
+      price: '₹60,000',
       duration: 'Both Groups',
       description: 'Complete CA Intermediate preparation for all 8 papers',
       features: [
@@ -47,7 +47,7 @@ const PricingSection = () => {
     },
     {
       name: 'CA Inter Single Group',
-      price: '₹38,000',
+      price: '₹35,000',
       duration: 'Per Group',
       description: 'Focus on Group I or Group II separately',
       features: [
